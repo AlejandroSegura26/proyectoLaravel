@@ -12,7 +12,7 @@ class ArticuloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
 
@@ -35,6 +35,7 @@ class ArticuloController extends Controller
             'from' => $articulos->firstItem(),
             'to' => $articulos->lastItem(),],
             'articulos' => $articulos];
+            
     }
 
     public function selectArticulo(Request $request){
@@ -57,7 +58,10 @@ class ArticuloController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $articulos = new Articulo();
+        $articulos->codigo = $request->codigo;
         $articulos->nombre = $request->nombre; //Accesar a los datos
+        $articulos->precio_venta = $request->precio_venta;
+        $articulos->stock = $request->stock;
         $articulos->descripcion = $request->descripcion;
         $articulos->condicion = '1';
         $articulos->save();
@@ -74,7 +78,10 @@ class ArticuloController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $articulos = Articulo::findOrFail($request->id);
+        $articulos->codigo = $request->codigo;
         $articulos->nombre = $request->nombre; //Accesar a los datos
+        $articulos->precio_venta = $request->precio_venta;
+        $articulos->stock = $request->stock;
         $articulos->descripcion = $request->descripcion;
         $articulos->condicion = '1';
 

@@ -2015,7 +2015,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- //importamos sweetalert2
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['ruta'],
@@ -2050,7 +2057,6 @@ __webpack_require__.r(__webpack_exports__);
     isActived: function isActived() {
       return this.pagination.current_page;
     },
-    //Calcula los elementos de la paginación
     pagesNumber: function pagesNumber() {
       if (!this.pagination.to) {
         return [];
@@ -2090,24 +2096,15 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //CREA REPORTES EN PDF
     cargarPdf: function cargarPdf() {
       window.open('/articulo/listarPdf', '_blank');
     },
     cambiarPagina: function cambiarPagina(page, buscar, criterio) {
-      var me = this; //Actualiza la página actual
-
-      me.pagination.current_page = page; //Envia la petición para visualizar la data de esa página
-
+      var me = this;
+      me.pagination.current_page = page;
       me.listarArticulo(page, buscar, criterio);
     },
-    //ABRE UN MODAL PARA REGISTRAR NUEVA INFORMACION
     registrarArticulo: function registrarArticulo() {
-      console.log(this.ruta);
-      console.log('aqui');
-      console.log(this.nombre);
-      console.log(this.descripcion);
-
       if (this.validarArticulo()) {
         return;
       }
@@ -2126,7 +2123,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //ABRE UN MODAL PARA ACTUALIZAR INFROMACION
     actualizarArticulo: function actualizarArticulo() {
       if (this.validarArticulo()) {
         return;
@@ -2147,7 +2143,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //ABRE UN MODAL PARA DESACTIVAR UNA CATEGORIA
     desactivarArticulo: function desactivarArticulo(id) {
       var _this = this;
 
@@ -2174,11 +2169,9 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             console.log(error);
           });
-        } else if ( // Read more about handling dismissals
-        result.dismiss === sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.DismissReason.cancel) {}
+        } else if (result.dismiss === sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.DismissReason.cancel) {}
       });
     },
-    //ABRE UN MODAL PARA ACTIVAR UNA CATEGORIA
     activarArticulo: function activarArticulo(id) {
       var _this2 = this;
 
@@ -2205,8 +2198,7 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             console.log(error);
           });
-        } else if ( // Read more about handling dismissals
-        result.dismiss === sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.DismissReason.cancel) {}
+        } else if (result.dismiss === sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.DismissReason.cancel) {}
       });
     },
     validarArticulo: function validarArticulo() {
@@ -2248,12 +2240,12 @@ __webpack_require__.r(__webpack_exports__);
 
               case 'actualizar':
                 {
-                  console.log(data);
+                  console.log(this.codigo_id);
                   this.modal = 1;
                   this.tituloModal = 'Actualizar articulo';
                   this.tipoAccion = 2;
                   this.articulo_id = data['id'];
-                  this.codigo_id = data['codigo'];
+                  this.codigo = data['codigo'];
                   this.nombre = data['nombre'];
                   this.precio_venta = data['precio_venta'];
                   this.stock = data['stock'];
@@ -2506,7 +2498,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //CREA REPORTES EN PDF
     cargarPdf: function cargarPdf() {
       window.open('/categoria/listarPdf', '_blank');
     },
@@ -2517,7 +2508,6 @@ __webpack_require__.r(__webpack_exports__);
 
       me.listarCategoria(page, buscar, criterio);
     },
-    //ABRE UN MODAL PARA REGISTRAR NUEVA INFORMACION
     registrarCategoria: function registrarCategoria() {
       console.log(this.ruta);
       console.log('aqui');
@@ -2539,7 +2529,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //ABRE UN MODAL PARA ACTUALIZAR INFROMACION
     actualizarCategoria: function actualizarCategoria() {
       if (this.validarCategoria()) {
         return;
@@ -2557,7 +2546,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //ABRE UN MODAL PARA DESACTIVAR UNA CATEGORIA
     desactivarCategoria: function desactivarCategoria(id) {
       var _this = this;
 
@@ -2588,7 +2576,6 @@ __webpack_require__.r(__webpack_exports__);
         result.dismiss === sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.DismissReason.cancel) {}
       });
     },
-    //ABRE UN MODAL PARA ACTIVAR UNA CATEGORIA
     activarCategoria: function activarCategoria(id) {
       var _this2 = this;
 
@@ -2634,7 +2621,6 @@ __webpack_require__.r(__webpack_exports__);
       this.nombre = '';
       this.descripcion = '';
     },
-    //ABRE UN MODAL PARA DESPUPES DETERMINAR SI ES DE REGISTRO O DE ACTUALIZACION
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
@@ -6989,6 +6975,40 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.arrayArticulo, function(articulo) {
                   return _c("tr", { key: articulo.id }, [
+                    _c("td", {
+                      domProps: { textContent: _vm._s(articulo.codigo) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(articulo.nombre) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(articulo.precio_venta) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(articulo.stock) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(articulo.descripcion) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      articulo.condicion
+                        ? _c("div", [
+                            _c("span", { staticClass: "badge badge-success" }, [
+                              _vm._v("Activo")
+                            ])
+                          ])
+                        : _c("div", [
+                            _c("span", { staticClass: "badge badge-danger" }, [
+                              _vm._v("Desactivado")
+                            ])
+                          ])
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "td",
                       [
@@ -7043,29 +7063,7 @@ var render = function() {
                             ]
                       ],
                       2
-                    ),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(articulo.nombre) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(articulo.descripcion) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      articulo.condicion
-                        ? _c("div", [
-                            _c("span", { staticClass: "badge badge-success" }, [
-                              _vm._v("Activo")
-                            ])
-                          ])
-                        : _c("div", [
-                            _c("span", { staticClass: "badge badge-danger" }, [
-                              _vm._v("Desactivado")
-                            ])
-                          ])
-                    ])
+                    )
                   ])
                 }),
                 0
@@ -7510,7 +7508,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Estado")])
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
       ])
     ])
   }
@@ -10749,9 +10749,17 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Clave")]),
+        _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Estado")])
+        _c("th", [_vm._v("Tipo de documento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Numero de documento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Direccion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Delefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("email")])
       ])
     ])
   },
@@ -23465,7 +23473,7 @@ var app = new Vue({
   el: '#app',
   data: {
     menu: 0,
-    ruta: 'http://127.0.0.1:8080'
+    ruta: 'http://jasegura.me:8080'
   }
 });
 
@@ -24235,7 +24243,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jonathan/Documentos/proyectos_laravel/blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/proyectoLaravel/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

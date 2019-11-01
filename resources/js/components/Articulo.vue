@@ -40,10 +40,27 @@
                                 <th>Stock</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="articulo in arrayArticulo" :key="articulo.id">
+                             <td v-text="articulo.codigo"></td>
+                             <td v-text="articulo.nombre"></td>
+                              <td v-text="articulo.precio_venta"></td>
+                                <td v-text="articulo.stock"></td>
+                               <td v-text="articulo.descripcion"></td>
+                                        
+                               
+                                <td>
+                                    <div v-if="articulo.condicion">
+                                        <span class="badge badge-success">Activo</span>
+                                    </div>
+                                    <div v-else>
+                                        <span class="badge badge-danger">Desactivado</span>
+                                    </div>
+
+                                </td>
                                 <td>
                                     <button type="button" @click="abrirModal('articulo','actualizar',articulo)"
                                         class="btn btn-warning btn-sm">
@@ -62,17 +79,8 @@
                                         </button>
                                     </template>
                                 </td>
-                                <td v-text="articulo.nombre"></td>
-                                <td v-text="articulo.descripcion"></td>
-                                <td>
-                                    <div v-if="articulo.condicion">
-                                        <span class="badge badge-success">Activo</span>
-                                    </div>
-                                    <div v-else>
-                                        <span class="badge badge-danger">Desactivado</span>
-                                    </div>
-
-                                </td>
+                                
+                       
                             </tr>
                         </tbody>
                     </table>
@@ -175,7 +183,7 @@
 </template>
 <script>
 
-import swal from "sweetalert2" //importamos sweetalert2
+import swal from "sweetalert2"  
 
 export default {
     props : ['ruta'],
@@ -210,7 +218,7 @@ export default {
         isActived: function(){
             return this.pagination.current_page;
         },
-        //Calcula los elementos de la paginación
+         
         pagesNumber: function() {
             if(!this.pagination.to) {
                 return [];
@@ -249,24 +257,21 @@ export default {
         },
 
 
-        //CREA REPORTES EN PDF
+       
         cargarPdf(){
             window.open('/articulo/listarPdf','_blank');
         },
 
         cambiarPagina(page,buscar,criterio){
             let me = this;
-            //Actualiza la página actual
+             
             me.pagination.current_page = page;
-            //Envia la petición para visualizar la data de esa página
+           
             me.listarArticulo(page,buscar,criterio);
         },
-        //ABRE UN MODAL PARA REGISTRAR NUEVA INFORMACION
+        
         registrarArticulo(){
-            console.log(this.ruta);
-            console.log('aqui');
-            console.log(this.nombre);
-            console.log(this.descripcion);
+             
             if (this.validarArticulo()){
                 return;
             }
@@ -287,7 +292,7 @@ export default {
             });
         },
 
-        //ABRE UN MODAL PARA ACTUALIZAR INFROMACION
+        
         actualizarArticulo(){
             if (this.validarArticulo()){
                 return;
@@ -308,7 +313,7 @@ export default {
                 console.log(error);
             });
         },
-        //ABRE UN MODAL PARA DESACTIVAR UNA CATEGORIA
+        
         desactivarArticulo(id) {
                 swal.fire({
                     title: 'Esta seguro de desactivar este articulo?',
@@ -341,14 +346,14 @@ export default {
 
 
                     } else if (
-                        // Read more about handling dismissals
+                         
                         result.dismiss === swal.DismissReason.cancel
                     ) {
 
                     }
                 })
             },
-            //ABRE UN MODAL PARA ACTIVAR UNA CATEGORIA
+             
             activarArticulo(id) {
                 swal.fire({
                     title: 'Esta seguro de activar este articulo?',
@@ -381,7 +386,7 @@ export default {
 
 
                     } else if (
-                        // Read more about handling dismissals
+                        
                         result.dismiss === swal.DismissReason.cancel
                     ) {
 
@@ -427,12 +432,12 @@ export default {
                         }
                         case 'actualizar':
                         {
-                            console.log(data);
+                            console.log(this.codigo_id);
                             this.modal=1;
                             this.tituloModal='Actualizar articulo';
                             this.tipoAccion=2;
                             this.articulo_id=data['id'];
-                            this.codigo_id=data['codigo'];
+                            this.codigo=data['codigo'];
                             this.nombre = data['nombre'];
                             this.precio_venta = data['precio_venta'];
                             this.stock = data['stock'];

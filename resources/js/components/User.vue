@@ -33,8 +33,12 @@
                     <thead>
                         <tr>
                         <th>Opciones</th>
-                        <th>Clave</th>
-                        <th>Estado</th>
+                        <th>Nombre</th>
+                        <th>Tipo de documento</th>
+                        <th>Numero de documento</th>
+                        <th>Direccion</th>
+                        <th>Delefono</th>
+                        <th>email</th>
                         </tr>
                     </thead>
                     <tbody>

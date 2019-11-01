@@ -222,7 +222,7 @@ export default {
         },
 
 
-        //CREA REPORTES EN PDF
+         
         cargarPdf(){
             window.open('/categoria/listarPdf','_blank');
         },
@@ -234,7 +234,7 @@ export default {
             //Envia la petición para visualizar la data de esa página
             me.listarCategoria(page,buscar,criterio);
         },
-        //ABRE UN MODAL PARA REGISTRAR NUEVA INFORMACION
+      
         registrarCategoria(){
             console.log(this.ruta);
             console.log('aqui');
@@ -257,7 +257,7 @@ export default {
             });
         },
 
-        //ABRE UN MODAL PARA ACTUALIZAR INFROMACION
+       
         actualizarCategoria(){
             if (this.validarCategoria()){
                 return;
@@ -275,7 +275,6 @@ export default {
                 console.log(error);
             });
         },
-        //ABRE UN MODAL PARA DESACTIVAR UNA CATEGORIA
         desactivarCategoria(id) {
                 swal.fire({
                     title: 'Esta seguro de desactivar esta categoría?',
@@ -315,7 +314,7 @@ export default {
                     }
                 })
             },
-            //ABRE UN MODAL PARA ACTIVAR UNA CATEGORIA
+            
             activarCategoria(id) {
                 swal.fire({
                     title: 'Esta seguro de activar esta categoría?',
@@ -374,7 +373,7 @@ export default {
             this.nombre='';
             this.descripcion='';
         },
-        //ABRE UN MODAL PARA DESPUPES DETERMINAR SI ES DE REGISTRO O DE ACTUALIZACION
+         
         abrirModal(modelo, accion, data = []){
             switch(modelo){
                 case "categoria":{
