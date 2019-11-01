@@ -1,3 +1,11 @@
+@guest
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+    </li>
+    <?php
+    redirect('/');
+    ?>
+@else
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -63,6 +71,13 @@
                     <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
                 </div>
             </li>
+            <li>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-lock"></i> Cerrar sesión</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+            </li>
         </ul>
     </header>
 
@@ -85,3 +100,4 @@
     <script src="js/app.js"></script>
 </body>
 </html>
+@endguest

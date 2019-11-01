@@ -47,3 +47,7 @@ Route::get('/saludo/{name}/{nickname?}', function ($name, $nickname = null) {
       return "Saludos {$name} tú no tienes apodo";
     }
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

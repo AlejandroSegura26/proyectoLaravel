@@ -41,3 +41,4 @@
     <acerca-component></acerca-component>
 </template>
 @endsection
+ 
